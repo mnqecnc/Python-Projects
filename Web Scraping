@@ -1,0 +1,37 @@
+import requests
+from bs4 import BeautifulSoup
+
+webpage_response = requests.get('https://content.codecademy.com/courses/beautifulsoup/shellter.html')
+
+webpage = webpage_response.content
+soup = BeautifulSoup(webpage, "html.parser")
+
+print(soup.p)  # Print out the first p tag on the shellter.html page
+print(soup.p.string)  # Print out the string associated with the first p tag on the shellter.html page
+
+----------------------------
+
+# Loop through all of the children of the first div and print out each one.
+
+for child in soup.div.children:
+  print(child)
+  
+# Find all of the a elements on the page and store them in a list called turtle_links  
+
+turtle_links = soup.find_all("a")
+print(turtle_links)
+
+-----------------------------
+
+Given the following seuss.html file, what would we put in the blank to print out "Blue"?
+
+<ul>
+<li class="one">Red</li>
+<li class="fish">Fish</li>
+<li class="two">Blue</li>
+<li class="fish">Fish</li>
+</ul>
+
+>> select(".two").get_text()
+>> This will take the list element with id two, which has ‘Blue’ as the text.
+
